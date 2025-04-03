@@ -3,7 +3,7 @@ let currentPlayer = 0;
 let round = 1; 
 const maxRounds = 3;
 let playerNames = ["Jugador 1", "Jugador 2"];
-const diceSound = new Audio("dice-roll.mp3");
+const diceSound = new Audio("sonido_dados.mp3"); // Ruta actualizada para el sonido
 let bestScore = 0;
 
 function setPlayerNames() {
@@ -24,7 +24,9 @@ function setPlayerNames() {
 }
 
 function rollDice() {
-    diceSound.play();
+    diceSound.currentTime = 0; // Reiniciar sonido
+    diceSound.play(); // Reproducir sonido del dado
+
     let roll = Math.floor(Math.random() * 6) + 1;
     scores[currentPlayer] += roll;
     document.getElementById(`score${currentPlayer + 1}`).textContent = scores[currentPlayer];
@@ -49,7 +51,7 @@ function rollDice() {
 
     // Alternar jugador
     currentPlayer = 1 - currentPlayer;
-    document.getElementById("turn").textContent = ` ${playerNames[currentPlayer]}`;
+    document.getElementById("turn").textContent = `Turno de: ${playerNames[currentPlayer]}`;
 }
 
 function getDiceFace(num) {
@@ -83,7 +85,7 @@ function restartGame() {
     document.getElementById("score1").textContent = "0";
     document.getElementById("score2").textContent = "0";
     document.getElementById("currentRound").textContent = "1";
-    document.getElementById("turn").textContent = ` ${playerNames[0]}`;
+    document.getElementById("turn").textContent = `Turno de: ${playerNames[0]}`;
     document.getElementById("winner").textContent = "";
     document.getElementById("rollDice").disabled = false;
     document.getElementById("dice1").src = "img/cara1.jpg";
