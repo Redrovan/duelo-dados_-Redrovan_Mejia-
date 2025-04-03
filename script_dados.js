@@ -30,7 +30,7 @@ function rollDice() {
     let roll = Math.floor(Math.random() * 6) + 1;
     scores[currentPlayer] += roll;
     document.getElementById(`score${currentPlayer + 1}`).textContent = scores[currentPlayer];
-    document.getElementById(`dice${currentPlayer + 1}`).src = getDiceFace(roll);
+    document.getElementById(`dice${currentPlayer + 1}`).src = getDiceFace(roll); // Cargar la imagen correspondiente
 
     // Agregar al historial
     let historyElement = document.getElementById(`history${currentPlayer + 1}List`);
@@ -55,8 +55,9 @@ function rollDice() {
 }
 
 function getDiceFace(num) {
-    return `img/cara${num}.jpg`;
+    return `cara${num}.jpg`; // Aquí no es necesario especificar una carpeta, ya que las imágenes están en la misma carpeta que tu HTML
 }
+
 
 function determineWinner() {
     let winnerText = "";
@@ -87,11 +88,9 @@ function restartGame() {
     document.getElementById("currentRound").textContent = "1";
     document.getElementById("turn").textContent = `Turno de: ${playerNames[0]}`;
     document.getElementById("winner").textContent = "";
-    document.getElementById("rollDice").disabled = false;
-    document.getElementById("dice1").src = "img/cara1.jpg";
-    document.getElementById("dice2").src = "img/cara1.jpg";
     document.getElementById("history1List").innerHTML = "";
     document.getElementById("history2List").innerHTML = "";
+    document.getElementById("rollDice").disabled = false;
 }
 
 document.getElementById("setNames").addEventListener("click", setPlayerNames);
